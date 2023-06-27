@@ -2,138 +2,221 @@ import React, {useState} from 'react';
 import axios from 'axios';
 
 const New: React.FC = () => {
-    const [firstName, setfirstName] = useState('');
-    const [surname, setsurname] = useState('');
-    const [middleName, setmiddleName] = useState('');
-    const [dateOfBirth, setdateOfBirth] = useState('');
-    const [homeAddress, sethomeAddress] = useState('');
-    const [dateOfRegistration, setdateOfRegistration] = useState('');
-    const [MatriculationNumber, setMatriculationNumber] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setlastName] = useState('');
+    const [middleName, setMiddleName] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [homeAddress, setHomeAddress] = useState('');
+    const [dateOfRegistration, setDateOfRegistration] = useState('');
+    const [matriculationNumber, setmatriculationNumber] = useState('');
+    const [clinicalDate, setclinicalDate] = useState('');
+    const [NatureofAilment, setNatureOfAilment] = useState('');
+    const [MedicinePrescribed, setMedicinePrescribed] = useState('');
+    const [ProcedureUndertaken, setProcedureUndertaken] = useState('');
+    const [dateOfNextAppointment, setdateOfNextAppointment] = useState('');
 
-    const changefirstName = (event:any) => {
-        setfirstName(event.target.value);
+    const changeFirstName = (event:any) => {
+        setFirstName(event.target.value);
     }
-    const changesurname = (event: any) => {
-        setsurname(event.target.value);
+    const changelastName = (event: any) => {
+        setlastName(event.target.value);
     }
-    const changemiddleName = (event:any) => {
-        setmiddleName(event.target.value);
+    const changeMiddleName = (event:any) => {
+        setMiddleName(event.target.value);
     }
-    const changedateOfBirth = (event: any) =>{
-        setdateOfBirth(event.target.value);
+    const changeDateOfBirth = (event: any) =>{
+        setDateOfBirth(event.target.value);
     }
-    const changehomeAddress = (event:any) =>{
-        sethomeAddress(event.target.value);
+    const changeHomeAddress = (event:any) =>{
+        setHomeAddress(event.target.value);
     }
-    const changedateOfRegistration = (event: any) =>{
-        setdateOfRegistration(event.target.value);
+    const changeDateOfRegistration = (event: any) =>{
+        setDateOfRegistration(event.target.value);
     }
-    const changeMatriculationNumber = (event: any) =>{
-        setMatriculationNumber(event.target.value);
+    const changematriculationNumber = (event: any) =>{
+        setmatriculationNumber(event.target.value);
     }
-    const postData = () => {
-        axios.post('http://localhost:3000/patient-data', {
+    const changeClinicalDate = (event: any) =>{
+        setclinicalDate(event.target.value);
+    }
+    const changeNatureofAilment = (event: any) =>{
+        setNatureOfAilment(event.target.value);
+    }
+    const changeMedicinePrescribed = (event: any) =>{
+        setMedicinePrescribed(event.target.value);
+    }
+    const changeProcedureUndertaken = (event: any) =>{
+        setProcedureUndertaken(event.target.value);
+    }
+    const changedateOfNextAppointment = (event: any) =>{
+        setdateOfNextAppointment(event.target.value);
+    }
+    const postData = async () => {
+        try {
+          await axios.post('http://localhost:5000/patient-records', {
             firstName,
-            surname,
+            lastName,
             middleName,
             homeAddress,
-            MatriculationNumber,
-            dateOfBirth,
-            dateOfRegistration,
-        })
-
-    }
+            matriculationNumber,
+            dateOfBirth: new Date(dateOfBirth).toISOString(),
+            dateOfRegistration: new Date(dateOfRegistration).toISOString(),
+          });
+      
+          await ClinicalRecords();
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      
+      const ClinicalRecords = async () => {
+        try {
+          await axios.post('http://localhost:5000/clinical-record', {
+            clinicalDate: new Date(clinicalDate).toISOString(),
+            NatureofAilment,
+            MedicinePrescribed,
+            ProcedureUndertaken,
+            dateOfNextAppointment: new Date(dateOfNextAppointment).toISOString(),
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      
+      
  return (
+    <div className="app-container">
+    <h1 className="app-title">WELCOME TO TOOTHFIXER</h1>
+    <div className="create-form">
+      <div className="table">
+        <h2 className="title2">Patient Record</h2>
+        <div className="table-container">
+          <div className="table-row">
+            <label style={{ color: 'black' }}>First Name</label>
+            <input
+              type="text"
+              placeholder="Please enter your First Name..."
+              onInput={changeFirstName}
+            />
+          </div>
   
-    <div className="create-form">
-    <h1 className="title">TOOTHFIXER</h1>
-
-    <div className="create-form">
-        <label style= {{color:'black'}}>
-            First Name
-        </label>
-        <p>
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Last Name</label>
             <input
-            type="text"
-            placeholder="Please Enter your First Name..."
-            onInput={changefirstName}
-            style={{width: '400px', height:'25px', border: '0px', borderRadius:'10px', backgroundColor: '#f5f5f5'}}
+              type="text"
+              placeholder="Enter your Surname..."
+              onInput={changelastName}
             />
-        </p>
-        <label style= {{color:'black'}}>
-            Surname
-        </label>
-        <p>
+          </div>
+  
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Middle Name</label>
             <input
-            type="text"
-            placeholder="Enter your Surname..."
-            onInput={changesurname}
-            style={{width: '400px', height:'25px', border: '0px', borderRadius:'10px', backgroundColor: '#f5f5f5'}}
+              type="text"
+              placeholder="Enter your Middle Name..."
+              onInput={changeMiddleName}
             />
-        </p>
-        <label style= {{color:'black'}}>
-            Middle Name
-        </label>
-        <p>
+          </div>
+  
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Date of Birth</label>
             <input
-            type="text"
-            placeholder="Enter your Middle Name..."
-            onInput={changemiddleName}
-            style={{width: '400px', height:'25px', border: '0px', borderRadius:'10px', backgroundColor: '#f5f5f5'}}
+              type="Date"
+              placeholder="Enter your Date of Birth..."
+              onInput={changeDateOfBirth}
             />
-        </p>
-        <label style= {{color:'black'}}>
-            Date of Birth
-        </label>
-        <p>
+          </div>
+  
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Home Address</label>
             <input
-            type="Date"
-            placeholder="Enter your Date of Birth..."
-            onInput={changedateOfBirth}
-            style={{width: '400px', height:'25px', border: '0px', borderRadius:'10px', backgroundColor: '#f5f5f5'}}
+              type="text"
+              placeholder="Enter your Home Address..."
+              onInput={changeHomeAddress}
             />
-        </p>
-        <label style= {{color:'black'}}>
-            Home Address
-        </label>
-        <p>
+          </div>
+  
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Date of Registration</label>
             <input
-            type="text"
-            placeholder="Enter your Home Address..."
-            onInput={changehomeAddress}
-            style={{width: '400px', height:'25px', border: '0px', borderRadius:'10px', backgroundColor: '#f5f5f5'}}
+              type="Date"
+              placeholder="Enter your Date of Registration..."
+              onInput={changeDateOfRegistration}
             />
-        </p>
-        <label style= {{color:'black'}}>
-            Date of Registration
-        </label>
-        <p>
+          </div>
+  
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Matriculation Number</label>
             <input
-            type="Date"
-            placeholder="Enter your Date of Registration..."
-            onInput={changedateOfRegistration}
-            style={{width: '400px', height:'25px', border: '0px', borderRadius:'10px', backgroundColor: '#f5f5f5'}}
+              type="number"
+              placeholder="Enter your Matriculation Number..."
+              onInput={changematriculationNumber}
             />
-        </p>
-        <label style= {{color:'black'}}>
-            Matriculation Number
-        </label>
-        <p>
+          </div>
+  
+          <button onClick={postData} type="submit">
+            Submit
+          </button>
+        </div>
+      </div>
+  
+      <div className="table">
+        <h2 className="title2">Clinical Record</h2>
+        <div className="table-container">
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Clinic Date:</label>
             <input
-            type="number"
-            placeholder="Enter your Matriculation Number..."
-            onInput={changeMatriculationNumber}
-            style={{width: '400px', height:'25px', border: '0px', borderRadius:'10px', backgroundColor: '#f5f5f5'}}
+              type="date"
+              placeholder="Enter clinical date..."
+              value={clinicalDate}
+              onChange={changeClinicalDate}
             />
-        </p>
-        <button onClick={postData} type="submit" style={{width: '400px', height: '23px', border: '0px', borderRadius: '10px', alignItems: 'center', justifyContent:'center', backgroundColor: '#708090' }}>
-         Submit   
-        </button>
-        
-
+          </div>
+  
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Nature of Ailment</label>
+            <input
+              type="text"
+              placeholder="Enter Nature of Ailment..."
+              onChange={changeNatureofAilment}
+            />
+          </div>
+  
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Medicine Prescribed</label>
+            <input
+              type="text"
+              placeholder="Enter Medicine Prescribed..."
+              onChange={changeMedicinePrescribed}
+            />
+          </div>
+  
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Procedure Undertaken</label>
+            <input
+              type="text"
+              placeholder="Enter Procedure Undertaken..."
+              onChange={changeProcedureUndertaken}
+            />
+          </div>
+  
+          <div className="table-row">
+            <label style={{ color: 'black' }}>Date of Next Appointment</label>
+            <input
+              type="Date"
+              placeholder="Enter Date of Next Appointment..."
+              onChange={changedateOfNextAppointment}
+            />
+          </div>
+  
+          <button type="button" onClick={postData} className="button">
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
-    </div>
-
+  </div>
  )
-}
+}  
+  
 export default New;

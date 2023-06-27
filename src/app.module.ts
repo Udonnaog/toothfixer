@@ -7,7 +7,7 @@ import { PatientRegistrationModule } from './patient-registration/patient-regist
 imports: [TypeOrmModule.forRoot({
 type: "postgres",
 host: "localhost",
-port: 5434,
+port: 5433,
 username: "postgres",
 password: "postgres",
 database: "toothfixer",

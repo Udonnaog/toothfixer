@@ -1,62 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&display=swap');
-
-.Container {
-  height: 100vh;
+.app-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: #b9e192b1; /* Light green background color */
+  background-size: cover;
+  background-position: center;
+  background-color: #5cb85c;
 }
 
-.Column1 {
-  width: 400px;
-  background-color: #cfe4d1; /* White background color */
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Box shadow effect */
-  text-align: center;
-  color: #024a00; /* Black text color */
-  font-family: 'Roboto Slab', serif;
-  font-size: 18px;
-}
-
-.Title {
+.app-title {
   font-size: 24px;
-  font-weight: bold;
   margin-bottom: 20px;
+  color: #5cb85c; /* Green color */
 }
 
-.Form {
-  margin-bottom: 20px;
+.create-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-.Form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #d6f5d6; /* Light green background */
+  padding: 20px;
+  border-radius: 10px;
 }
 
-.Form input {
-  width: 100%;
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  margin-bottom: 12px;
+.table-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.Button {
-  background-color: #12e154; /* Button green shade */
-  color: #000000;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
+.table-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label {
+  color: #5cb85c; /* Green color */
+}
+
+input {
+  width: 400px;
+  height: 25px;
+  border: 0px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+button {
+  width: 400px;
+  height: 23px;
+  border: 0px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: #5cb85c; /* Green color */
+  color: #ffffff;
   cursor: pointer;
+}
+
+.button {
+  width: 100%;
+  background-color: #5cb85c; /* Green color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #4ba04b; /* Darker shade of green */
+}
+.table-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header1 {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.record-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.record-table th,
+.record-table td {
+  padding: 10px;
+  border: 1px solid #f01313;
+}
+
+.record-table th {
+  background-color: #f5f5f5;
   font-weight: bold;
-  transition: background-color 0.3s ease;
 }
 
-.Button:hover {
-  background-color: #00ff37; /* Darker green shade on hover */
+.record-table td {
+  text-align: center;
 }
 
-/* Additional styles can be added as per your component requirements */
+.record-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.record-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+

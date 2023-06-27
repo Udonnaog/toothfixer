@@ -15,6 +15,6 @@ dateOfBirth: Date;
 homeAddress: string
 @Column()
 dateOfRegistration: Date;
-@Column({ default: true })
-matriculationNumber: boolean;
+@Column()
+matriculationNumber: number;
 }

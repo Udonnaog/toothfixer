@@ -1,17 +1,17 @@
 version: '3'
 services:
   database:
-    container_name: postgres-csc2021_2
+    container_name: postgres-csc2023
     image: postgres:latest
     ports:
-      - "5434:5432"
+      - "5433:5432"
     volumes:
-      -  C:\Users\user\data\postgres\csc2021_2:\data\postgres
+      -  C:\Users\user\data\postgres\csc2023:\data\postgres
     env_file:
       - csc2021.env
 
   web:
-    container_name: nginx-csc2021
+    container_name: nginx-csc2023
     build:
       context: .
       dockerfile: nginx-primer/Dockerfile
